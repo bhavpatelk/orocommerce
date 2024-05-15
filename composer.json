@@ -32,7 +32,8 @@
     "oro/crm-zendesk": "6.0.*",
     "oro/commerce": "6.0.*",
     "oro/commerce-crm": "6.0.*",
-    "oro/cookie-consent": "6.0.*"
+    "oro/cookie-consent": "6.0.*",
+    "ruflin/elastica": "*"
   },
   "require-dev": {
     "behat/behat": "~3.12.0",
