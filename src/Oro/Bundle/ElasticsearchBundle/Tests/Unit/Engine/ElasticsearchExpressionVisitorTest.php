@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Expr\CompositeExpression;
 use Doctrine\Common\Collections\Expr\Value;
 use Elastica\Query\BoolQuery;
 use Elastica\Query\Exists;
-use Elastica\Query\Match;
+use Elastica\Query\Matchs;
 use Elastica\Query\Prefix;
 use Elastica\Query\Range;
 use Elastica\Query\Term;
@@ -44,7 +44,7 @@ class ElasticsearchExpressionVisitorTest extends \PHPUnit_Framework_TestCase
         $actual = $visitor->dispatch($criteria->getWhereExpression());
 
         $bool = new BoolQuery();
-        $bool->addMust(new Match('test', 'aaa'));
+        $bool->addMust(new Matchs('test', 'aaa'));
         $bool->addFilter(new Term(['visibility_anonymous' => 1]));
 
         $this->assertEquals($bool, $actual);

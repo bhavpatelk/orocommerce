@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\Expr\CompositeExpression;
 use Doctrine\Common\Collections\Expr\ExpressionVisitor;
 use Doctrine\Common\Collections\Expr\Value;
 use Elastica\Query\BoolQuery;
-use Elastica\Query\Match;
+use Elastica\Query\Matchs;
 use Elastica\Query\Term;
 use Elastica\Query\Terms;
 use Oro\Bundle\SearchBundle\Query\Criteria\Criteria;
@@ -46,9 +46,9 @@ class ElasticsearchExpressionVisitor extends ExpressionVisitor
 
         switch ($comparison->getOperator()) {
             case Comparison::CONTAINS:
-                return [self::MUST_OR_SHOULD => new Match($fieldName, $value)];
+                return [self::MUST_OR_SHOULD => new Matchs($fieldName, $value)];
             case OroComparison::NOT_CONTAINS:
-                return [self::MUST_NOT => new Match($fieldName, $value)];
+                return [self::MUST_NOT => new Matchs($fieldName, $value)];
             case Comparison::EQ:
                 if ($type == 'text') {
                     $fieldName = $fieldName . '.keyword';
