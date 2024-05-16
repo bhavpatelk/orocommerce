@@ -38,6 +38,8 @@ class AppKernel extends OroKernel
             $bundles[] = new Oro\Bundle\FrontendTestFrameworkBundle\OroFrontendTestFrameworkBundle();
         }
 
+        $bundles[] = new FOS\ElasticaBundle\FOSElasticaBundle();
+
         return array_merge(parent::registerBundles(), $bundles);
     }
 

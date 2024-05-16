@@ -151,3 +151,8 @@ oro_attachment:
         - image/jpeg
         - image/png
         - image/webp
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app: ~
