@@ -151,8 +151,24 @@ oro_attachment:
         - image/jpeg
         - image/png
         - image/webp
+
 fos_elastica:
     clients:
-        default: { host: localhost, port: 9200 }
+        default: { host: 127.0.0.1, port: 9200}
     indexes:
-        app: ~
+        products:
+            index_name: app_products
+            persistence:
+                driver: orm
+                model: Oro\Bundle\ProductBundle\Entity\Product
+                provider: ~
+                listener: ~
+                finder: ~
+                #model_to_elastica_transformer:
+                #    service: sky_search.util.deal_to_elastica_transformer
+            properties:
+                sku: ~
+                names:
+                    type: nested
+                    properties:
+                        string: ~
