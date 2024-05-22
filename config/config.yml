@@ -158,6 +158,19 @@ fos_elastica:
     indexes:
         products:
             index_name: app_products
+            settings:
+                index:
+                    analysis:
+                        filter:
+                            autocomplete_filter:
+                                type: "edge_ngram"
+                                min_gram: 1
+                                max_gram: 20
+                        analyzer:
+                            autocomplete:
+                                type: custom
+                                tokenizer: standard
+                                filter: [ "lowercase", "autocomplete_filter" ]
             persistence:
                 driver: orm
                 model: Oro\Bundle\ProductBundle\Entity\Product
@@ -169,6 +182,18 @@ fos_elastica:
             properties:
                 sku: ~
                 names:
-                    type: nested
+                    type: object
                     properties:
-                        string: ~
+                        string: { analyzer: autocomplete, search_analyzer: standard }
+                descriptions:
+                    type: object
+                    properties:
+                        wysiwyg: { analyzer: autocomplete, search_analyzer: standard }
+                shortDescriptions:
+                    type: object
+                    properties:
+                        text: { analyzer: autocomplete, search_analyzer: standard }
+                images:
+                    type: object
+                    properties:
+                        image: { analyzer: autocomplete, search_analyzer: standard }
